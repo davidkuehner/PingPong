@@ -22,8 +22,14 @@ class game_player extends CI_Model
     return $this->db->insert_id();
 	}
 	
-	function delete($game_id) {
-		$this->db->where('game_id',$game_id);
+  function delete($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete($this::TABLE_NAME);
+	}
+  
+	function delete_by_game($game_id) {
+		$this->db->where('games_id',$game_id);
 		$this->db->delete($this::TABLE_NAME);
 	}
 }

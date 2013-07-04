@@ -14,7 +14,7 @@
           <a href="<?php echo base_url(); ?>">Users</a>
         </li>
         <li class = "menu_item">
-          <a href="<?php echo base_url(); ?>">Games</a>
+          <a href="<?php echo base_url().'index.php/gamelist'; ?>">Gamelist</a>
         </li>
         <li class = "menu_item">
           <a href="<?php echo base_url(); ?>">New Game</a>

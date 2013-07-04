@@ -18,6 +18,12 @@ class player extends CI_Model
 		$query = $this->db->get($this::TABLE_NAME);
     return $query->result();
   }
+  
+  function get_name($id)
+  {
+  $player = $this->get($id);
+   return $player[0]->name;
+  }
 	
 	function save($data)
 	{
