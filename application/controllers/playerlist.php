@@ -32,15 +32,33 @@ class Playerlist extends CI_Controller {
     
     $this->layout->views('playerlist/header',$this->data);
 
-    $players = $this->player->get_all();
+    $players_object = $this->player->get_all();
+    $players_array;
     
-    foreach($players as $player) {
-      
-      $this->data['player_id'] = $player->id;
-      $this->data['player_name'] = $player->name;
-      $this->data['player_victory'] = 0;
-      $this->data['player_position'] = 1;
+    // Victory count
+    $keys = array_keys($players_object);
+    foreach($keys as $key) {
+      $players_array[$key]['id'] = $players_object[$key]->id;
+      $players_array[$key]['name'] = $players_object[$key]->name;
+      $players_array[$key]['victory'] = $this->game->get_number_victory($players_object[$key]->id);
+    }
+    
+    // Ranking sort
+    // list of colums
+    foreach($players_array as $key => $row) {
+      $victory[$key] = $row['victory'];
+    }
+    // Sort by victory descendent
+    array_multisort($victory, SORT_DESC, $players_array);
+    
+    $i = 1;
+    foreach($players_array as $player) {
+      $this->data['player_id'] = $player['id'];
+      $this->data['player_name'] = $player['name'];
+      $this->data['player_victory'] = $player['victory'];
+      $this->data['player_position'] = $i;
       $this->layout->views('playerlist/ranking',$this->data);
+      ++$i;
     }
     $this->layout->view('playerlist/footer');
 	}
@@ -50,6 +68,11 @@ class Playerlist extends CI_Controller {
     $this->game->delete_by_winner($id);
     $this->player->delete($id);
     redirect('playerlist/index/','');
+  }
+  
+  public function test($player_id)
+  {
+  echo $this->game->get_number_victory($player_id);
   }
 }
 

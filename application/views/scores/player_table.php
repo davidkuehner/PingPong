@@ -15,4 +15,6 @@
 			echo form_close();
       ?>
     </div><!-- .add_point -->
+      <?php echo anchor(base_url().'/index.php/scores/clear_session/'.$game_id,'debug : clear session'); ?>
+
   </div><!-- .player_table -->

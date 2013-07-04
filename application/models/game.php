@@ -18,6 +18,13 @@ class game extends CI_Model
 		$query = $this->db->get($this::TABLE_NAME);
     return $query->result();
   }
+  
+  function get_number_victory($player_id)
+  {
+    $this->db->where('id_winner', $player_id);
+    $this->db->from($this::TABLE_NAME);
+    return $this->db->count_all_results();
+  }
 	
 	function save($data)
 	{
@@ -37,6 +44,12 @@ class game extends CI_Model
 		$this->db->delete($this::TABLE_NAME);
 	}
   
+  function delete_by_winner($winner_id)
+  {
+    $this->db->where('id_winner',$winner_id);
+		$this->db->delete($this::TABLE_NAME);
+  }
+  
   function set_winner($id, $player_id)
   {
     $this->db->where('id', $id);
@@ -45,5 +58,6 @@ class game extends CI_Model
     );
     $this->db->update($this::TABLE_NAME, $data);
   }
+  
 }
 ?>

@@ -32,5 +32,16 @@ class game_player extends CI_Model
 		$this->db->where('games_id',$game_id);
 		$this->db->delete($this::TABLE_NAME);
 	}
+  
+  function delete_by_player($player_id) {
+		$this->db->where('players_id',$player_id);
+    $query = $this->db->get($this::TABLE_NAME);
+    $array = $query->result();
+    foreach($array as $item) {
+      $this->delete_by_game($item->games_id);
+    }
+    $this->db->where('players_id',$player_id);
+		$this->db->delete($this::TABLE_NAME);
+	}
 }
 ?>

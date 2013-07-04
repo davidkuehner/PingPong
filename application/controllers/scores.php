@@ -160,9 +160,10 @@ class Scores extends CI_Controller {
     redirect('scores/index/' . $game_id);
   }
   
-  public function clear_session()
+  public function clear_session($game_id)
   {
     $this->session->sess_destroy();
+    redirect('scores/index/' . $game_id);
   }
   
   private function set_opponents_points($array, $val)
