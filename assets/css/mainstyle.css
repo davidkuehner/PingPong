@@ -1,0 +1,249 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* 01 STRUCTURE
+-------------------------------------------------------------- */
+
+::selection{ background-color: #E13300; color: white; }
+::moz-selection{ background-color: #E13300; color: white; }
+::webkit-selection{ background-color: #E13300; color: white; }
+
+body {
+	background-color: #fff;
+	margin: 40px;
+	font: 13px/20px normal Helvetica, Arial, sans-serif;
+	color: #4F5155;
+}
+
+a {
+	color: #003399;
+	background-color: transparent;
+	font-weight: normal;
+  text-decoration: none;
+}
+
+
+h1 {
+	color: #444;
+	background-color: transparent;
+	border-bottom: 1px solid #D0D0D0;
+	font-size: 19px;
+	font-weight: normal;
+	margin: 0 0 14px 0;
+	padding: 14px 15px 10px 15px;
+}
+
+code {
+	background-color: #f9f9f9;
+	border: 1px solid #D0D0D0;
+	color: #002166;
+	display: block;
+	font-family: Consolas, Monaco, Courier New, Courier, monospace;
+	font-size: 12px;
+	margin: 14px 0 14px 0;
+	padding: 12px 10px 12px 10px;
+}
+
+#body{
+	margin: 0 1% 0 1%;
+  width: 98%;
+}
+
+p.footer{
+	border-top: 1px solid #D0D0D0;
+	font-size: 11px;
+	line-height: 32px;
+	margin: 20px 0 0 0;
+	padding: 0 10px 0 10px;
+	text-align: right;
+}
+
+#container{
+	border: 1px solid #D0D0D0;
+	margin: 10px;
+	-webkit-box-shadow: 0 0 8px #D0D0D0;
+}
+
+/* 02 GLOBAL ELEMENTS
+-------------------------------------------------------------- */
+
+/* Classes */
+
+.clearfix:after {
+	clear: both;
+	content: "";
+	display: block;
+	font-size: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.clear	{ clear: both; }
+.left 	{ float: left; }
+.right	{ float: right; }
+
+/* 03 MENU
+-------------------------------------------------------------- */
+
+#menu {
+  float:right;
+  list-style-type: none;
+  margin: 14px 15px; 0 0;
+}
+#menu .menu_item {
+  float: right;
+  margin-left: 15px;
+  padding: 0px;
+}
+
+ul{
+  padding: 0px;
+}
+
+
+/* 04 NEW GAME FORM
+-------------------------------------------------------------- */
+.form_item:after {
+	clear: both;
+	content: "";
+	display: block;
+	font-size: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.form_item {
+    margin: 0 auto 15px auto;
+    padding: 0 1%;
+    width: 200px;
+}
+
+.form_item input{
+    background: none repeat scroll 0 0 #A2A2A2;
+    border: 0 none;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin: 0;
+    padding: 0 1%;
+    width: 200px;
+}
+
+.form_item label {
+  display:block;
+}
+
+.game_submit{
+    background: none repeat scroll 0 0 #7A7A7A !important;
+    border: 0 none;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 20px;
+    padding: 0 1%;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+.game_submit:hover{
+  background: none repeat scroll 0 0 #626262 !important;
+}
+
+/* 05 ADD PLAYERS FORM
+-------------------------------------------------------------- */
+.player_submit{
+    background: none repeat scroll 0 0 #7A7A7A !important;
+    border: 0 none;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 20px;
+    padding: 0 1%;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+.player_submit:hover{
+  background: none repeat scroll 0 0 #626262 !important;
+}
+
+/* 06 SCORES
+-------------------------------------------------------------- */
+
+.player_table{
+    background-color: #F4F4F4;
+    border: 1px solid #D0D0D0;
+    border-top: 2px solid #D0D0D0;
+    float: left;
+    margin: 1%;
+    padding: 2% 1%;
+    width: 45%;
+}
+
+.points{
+  background-color: #AAA;
+  border: 2px solid #888;
+  color: #F4F4F4;
+  float: left;
+  font-size: 64px;
+  font-weight:bold;
+  margin: 0 1%;
+  padding: 0 1%;
+  text-align: center;
+  width: 64%;
+}
+
+.points p{
+  line-height:100px;
+  margin:0;
+}
+
+.sets{
+  background-color: #555;
+  color: #F4F4F4;
+  float: left;
+  font-size: 24px;
+  font-weight:bold;
+  margin: 0 1%;
+  padding: 0 1%;
+  text-align: center;
+  width: 26%;
+}
+
+.sets p{
+  line-height:40px;
+  margin:0;
+}
+
+.points_submit{
+    background: none repeat scroll 0 0 #7A7A7A;
+    border: 0 none;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin: 20px 1% 0 1%;
+    padding: 0 1%;
+    text-transform: uppercase;
+    width: 98%;
+}
+
+.winner{
+    background-color: #EEE;
+    margin: 1%;
+    padding: 2% 1%;
+    width: 96%;
+}
+
+/* 07 GAMELIST
+-------------------------------------------------------------- */
+
+
+
