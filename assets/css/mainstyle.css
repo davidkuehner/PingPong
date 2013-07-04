@@ -276,3 +276,36 @@ a.delete_game:hover {
   font-weight: bold;
 }
 
+/* 08 PLAYERLIST
+-------------------------------------------------------------- */
+.playerlist_item{
+    background-color: #F4F4F4;
+    border: 1px solid #D0D0D0;
+    border-top: 2px solid #D0D0D0;
+    float: left;
+    margin: 1%;
+    padding: 2% 1%;
+    position: relative;
+    width: 95%;
+}
+a.delete_player {
+  background-color: #FFCCCC;
+  font-weight: bold;
+  color: #fff;
+  border: 1px solid #FF6666;
+  height:10px;
+  position:absolute;
+  padding: 2px;
+  line-height:10px;
+  text-align:center;
+  top:10px;
+  right:10px;
+  width:10px;
+}
+
+a.delete_player:hover {
+  background-color: #E06666;
+  border: 1px solid #CC0000;
+  color: #fff;
+  font-weight: bold;
+}

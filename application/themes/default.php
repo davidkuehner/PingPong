@@ -11,10 +11,10 @@
     <div id="container" >
       <ul id= "menu" >
         <li class = "menu_item">
-          <a href="<?php echo base_url(); ?>">Users</a>
+          <a href="<?php echo base_url().'index.php/playerlist'; ?>">Ranking</a>
         </li>
         <li class = "menu_item">
-          <a href="<?php echo base_url().'index.php/gamelist'; ?>">Gamelist</a>
+          <a href="<?php echo base_url().'index.php/gamelist'; ?>">Game list</a>
         </li>
         <li class = "menu_item">
           <a href="<?php echo base_url(); ?>">New Game</a>

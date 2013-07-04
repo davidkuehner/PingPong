@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Gamelist extends CI_Controller {
+class Playerlist extends CI_Controller {
 
   private $data;
   
@@ -20,7 +20,7 @@ class Gamelist extends CI_Controller {
 
     
     $this->data = array(
-        'title' => 'Game list',
+        'title' => 'Player list',
         'signature' => 'Ping pong at DevFactory',
         );
         
@@ -30,31 +30,26 @@ class Gamelist extends CI_Controller {
   
 	public function index()	{
     
-    $this->layout->views('gamelist/header',$this->data);
+    $this->layout->views('playerlist/header',$this->data);
 
-    $games = $this->game->get_all();
+    $players = $this->player->get_all();
     
-    foreach($games as $game) {
+    foreach($players as $player) {
       
-      $this->data['game_id'] = $game->id;
-      $this->data['game_title'] = $game->title;
-      if($game->id_winner == NULL) {
-        $this->data['is_finish'] = FALSE;
-        $this->data['winner_name'] = 'No winner... yet !';
-      }
-      else {
-        $this->data['is_finish'] = TRUE;
-        $this->data['winner_name'] = $this->player->get_name($game->id_winner);
-      }
-      $this->layout->views('gamelist/winner',$this->data);
+      $this->data['player_id'] = $player->id;
+      $this->data['player_name'] = $player->name;
+      $this->data['player_victory'] = 0;
+      $this->data['player_position'] = 1;
+      $this->layout->views('playerlist/ranking',$this->data);
     }
-    $this->layout->view('gamelist/footer');
+    $this->layout->view('playerlist/footer');
 	}
 
-  public function delete_game($id) {
-    $this->game_player->delete_by_game($id);
-    $this->game->delete($id);
-    redirect('gamelist/index/','');
+  public function delete_player($id) {
+    $this->game_player->delete_by_player($id);
+    $this->game->delete_by_winner($id);
+    $this->player->delete($id);
+    redirect('playerlist/index/','');
   }
 }
 
