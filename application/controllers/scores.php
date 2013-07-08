@@ -1,39 +1,50 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Scores displays a for each player a score tables
+ * with the number of points and sets.
+ * It check if there is a two point margin.
+ * 
+ * @author David Kühner
+ */
 class Scores extends CI_Controller {
 
-  private $data;
+  // Constants
   const POINTS_GAP = 2;
   
+  // Private attributes
+  private $data;
+  
+  /*
+   * Instantiates a Scores
+   */
   public function __construct() {
     parent::__construct();
 
-    // Model load
     $this->load->model('game');
     $this->load->model('player');
     $this->load->model('game_player');
-    
-    // Library load
     $this->load->library('layout');
     $this->load->library('debug');
-    
-    // Css load
     $this->layout->ajouter_css('reset');
     $this->layout->ajouter_css('typography');
     $this->layout->ajouter_css('forms');
     $this->layout->ajouter_css('ie');
     $this->layout->ajouter_css('mainstyle');
 
-    
     $this->data = array(
         'title' => 'Scores',
         'signature' => 'Ping pong at DevFactory',
         );
         
     //$this->output->enable_profiler(true);
-    
   }
   
+  /**
+   * Displays the scores tables
+   *
+   * @param $game_id Current game id
+   */
 	public function index($game_id)	{
   
     $this->layout->views('scores/header',$this->data);
@@ -81,10 +92,16 @@ class Scores extends CI_Controller {
         $this->layout->views('scores/player_table',$data_player);
       }
     }
-    
     $this->layout->view('scores/footer');
 	}  
   
+  /**
+   * Add a point to a player.
+   * Respect a two point margin
+   *
+   * @param $player_id Current player id
+   * @param $game_id Current game id
+   */
   public function add_point($player_id, $game_id)
   {    
     $player_points = 'player_' . $player_id . '_' . $game_id . '_points';
@@ -131,7 +148,8 @@ class Scores extends CI_Controller {
         $set_is_won = TRUE;
       }      
     }
-    
+     $test['test'] = 'lol';
+     $this->output->set_output(json_encode($test));
     // Check we have a winner
     if($sets == $sets_max) {
       $this->game->set_winner($game_id, $player_id);
@@ -160,12 +178,13 @@ class Scores extends CI_Controller {
     redirect('scores/index/' . $game_id);
   }
   
-  public function clear_session($game_id)
-  {
-    $this->session->sess_destroy();
-    redirect('scores/index/' . $game_id);
-  }
-  
+  /*
+   * set the points to each player to the given value
+   *
+   * @param $array List of players
+   * @param $val Value to set
+   * @return $array LIst of players with the given value
+   */
   private function set_opponents_points($array, $val)
   {
     $keys = array_keys($array);
@@ -175,6 +194,16 @@ class Scores extends CI_Controller {
     return $array;
   }
   
+  /*
+   * Debug function, clear the session
+   *
+   * @param $game_id Current game id
+   */
+  public function clear_session($game_id)
+  {
+    $this->session->sess_destroy();
+    redirect('scores/index/' . $game_id);
+  }
 }
 
 /* End of file players.php */

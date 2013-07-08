@@ -1,9 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Players displays a form to select the players
+ * If the player isn't in the database, he's add to it.
+ * 
+ * @author David Kühner
+ */
 class Players extends CI_Controller {
-
+  
+  // Private attributes
   private $data;
   
+  /*
+   * Instantiates a Players
+   */
   public function __construct() {
     parent::__construct();
 
@@ -17,23 +27,32 @@ class Players extends CI_Controller {
     $this->layout->ajouter_css('forms');
     $this->layout->ajouter_css('ie');
     $this->layout->ajouter_css('mainstyle');
-
     
     $this->data = array(
         'title' => 'Add players',
         'signature' => 'Ping pong at DevFactory',
         );
-        
-    //$this->output->enable_profiler(true);
-    
   }
   
+  /**
+   * Displays the form
+   *
+   * @param $game_id Current game id
+   * @param $nb_players Number of players in the game
+   */
 	public function index($game_id, $nb_players)	{
     $this->data['nb_players'] = $nb_players;
     $this->data['game_id'] = $game_id;
 		$this->layout->view('players/add_form',$this->data);
 	}
   
+  /**
+   * Checks the required fields and if it's valid
+   * and add the new player to the database.
+   *
+   * @param $game_id Current game id
+   * @param $nb_players Number of players in the game
+   */
   public function add_players($game_id, $nb_players) {
     
     for( $i = 1 ; $i <= $nb_players ; ++$i) { 
@@ -60,7 +79,6 @@ class Players extends CI_Controller {
       redirect('scores/index/' . $game_id);
      }
   }
-  
 }
 
 /* End of file players.php */

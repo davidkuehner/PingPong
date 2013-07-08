@@ -1,9 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Gamelist Displays a list of the whole games
+ * 
+ * @author David Kühner
+ */
 class Gamelist extends CI_Controller {
 
+  // Private attributes
   private $data;
   
+  /*
+   * Instantiates a Games
+   */
   public function __construct() {
     parent::__construct();
 
@@ -17,17 +26,16 @@ class Gamelist extends CI_Controller {
     $this->layout->ajouter_css('forms');
     $this->layout->ajouter_css('ie');
     $this->layout->ajouter_css('mainstyle');
-
     
     $this->data = array(
         'title' => 'Game list',
         'signature' => 'Ping pong at DevFactory',
-        );
-        
-    //$this->output->enable_profiler(true);
-    
+        );    
   }
   
+  /**
+   * Displays the list of games
+   */
 	public function index()	{
     
     $this->layout->views('gamelist/header',$this->data);
@@ -51,12 +59,17 @@ class Gamelist extends CI_Controller {
     $this->layout->view('gamelist/footer');
 	}
 
-  public function delete_game($id) {
-    $this->game_player->delete_by_game($id);
-    $this->game->delete($id);
+  /*
+   * Deletes a game and his relations in the database
+   * 
+   * @param $game_id Game's id
+   */
+  public function delete_game($game_id) {
+    $this->game_player->delete_by_game($game_id);
+    $this->game->delete($game_id);
     redirect('gamelist/index/','');
   }
 }
 
-/* End of file players.php */
-/* Location: ./application/controllers/players.php */
+/* End of file gamelist.php */
+/* Location: ./application/controllers/gamelist.php */

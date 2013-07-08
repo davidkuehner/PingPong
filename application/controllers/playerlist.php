@@ -1,9 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Playerlist Displays an ordered list of the whole players
+ * 
+ * @author David Kühner
+ */
 class Playerlist extends CI_Controller {
 
+  // Private attributes
   private $data;
   
+  /*
+   * Instantiates a Playerlist
+   */
   public function __construct() {
     parent::__construct();
 
@@ -18,16 +27,16 @@ class Playerlist extends CI_Controller {
     $this->layout->ajouter_css('ie');
     $this->layout->ajouter_css('mainstyle');
 
-    
     $this->data = array(
         'title' => 'Ranking',
         'signature' => 'Ping pong at DevFactory',
         );
-        
-    //$this->output->enable_profiler(true);
-    
   }
   
+  /**
+   * Displays the ordered list of players
+   * Dose the player's sorting
+   */
 	public function index()	{
     
     $this->layout->views('playerlist/header',$this->data);
@@ -66,18 +75,28 @@ class Playerlist extends CI_Controller {
     $this->layout->view('playerlist/footer');
 	}
 
-  public function delete_player($id) {
-    $this->game_player->delete_by_player($id);
-    $this->game->delete_by_winner($id);
-    $this->player->delete($id);
+  /**
+   * Deletes a player and his relation in the database
+   *
+   * @param $id Player's id 
+   */
+  public function delete_player($player_id) {
+    $this->game_player->delete_by_player($player_id);
+    $this->game->delete_by_winner($player_id);
+    $this->player->delete($player_id);
     redirect('playerlist/index/','');
   }
   
+  /**
+   * Test function
+   *
+   * @param Player's id
+   */
   public function test($player_id)
   {
   echo $this->game->get_number_victory($player_id);
   }
 }
 
-/* End of file players.php */
-/* Location: ./application/controllers/players.php */
+/* End of file playerlist.php */
+/* Location: ./application/controllers/playerlist.php */
