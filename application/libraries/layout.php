@@ -89,6 +89,10 @@ class Layout {
       return FALSE;
     }
     
+    public function add_google_jquery() {
+        $this->var['js'][] = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js";
+    }
+    
     private function css_url($nom) {
       return base_url() . 'assets/css/' . $nom . '.css';
     }

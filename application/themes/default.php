@@ -6,6 +6,9 @@
   <?php foreach($css as $url): ?>
           <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $url; ?>" />
   <?php endforeach; ?>
+  <?php foreach($js as $url): ?>
+          <script src="<?php echo $url; ?>" ></script>
+  <?php endforeach; ?>
   </head>
   <body>
     <div id="container" >
