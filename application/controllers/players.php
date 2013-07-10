@@ -64,6 +64,7 @@ class Players extends CI_Controller {
     }
     if($this->form_validation->run() == FALSE) {
       $this->data['nb_players'] = $nb_players;
+      $this->data['game_id'] = $game_id;
       $this->layout->view('players/add_form',$this->data);
     }
     else {

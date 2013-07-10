@@ -50,9 +50,9 @@ class Games extends CI_Controller {
    */
   public function create_game() {
     $this->form_validation->set_rules($this::GAME_TITLE, 'Titre', 'required');
-    $this->form_validation->set_rules($this::GAME_SET_NUMBER, 'Number of sets', 'required');
-    $this->form_validation->set_rules($this::GAME_SET_POINTS, 'Number of points', 'required');
-    $this->form_validation->set_rules($this::GAME_NB_PLAYERS, 'Number of players', 'required');
+    $this->form_validation->set_rules($this::GAME_SET_NUMBER, 'Number of sets', 'trim|required|is_natural_no_zero');
+    $this->form_validation->set_rules($this::GAME_SET_POINTS, 'Number of points', 'trim|required|is_natural_no_zero');
+    $this->form_validation->set_rules($this::GAME_NB_PLAYERS, 'Number of players', 'trim|required|is_natural_no_zero');
     
      if($this->form_validation->run() == FALSE) {
         $this->layout->view('games/create_form',$this->data);

@@ -97,8 +97,6 @@ class Scores extends CI_Controller {
     $current_player_id = json_decode(stripslashes($_GET['player_id']));
     $current_player_points = json_decode(stripslashes($_GET['player_points']));
     $current_player_sets = json_decode(stripslashes($_GET['player_sets']));
-    //$opponent_points = json_decode(stripslashes($_GET['opponent_points']));
-    //$opponent_sets = json_decode(stripslashes($_GET['opponent_sets']));
   
     $set_is_won = FALSE;
     $opponent_is_close = FALSE;
@@ -157,6 +155,19 @@ class Scores extends CI_Controller {
     
     // Return informations to ajax
     $this->output->set_content_type('application/json')->set_output(json_encode($result));
+  }
+  
+  /**
+   * Add a point to a player. 
+   * Respect a two point margin
+   *
+   * @param $player_id Current player id
+   * @param $game_id Current game id
+   * @param $current_points players points associative array 'player_id'=>'points' 
+   * @param $current_sets players sets associative array 'player_id'=>'sets' 
+   */
+  public function rem_point() {
+  
   }
   
   /*

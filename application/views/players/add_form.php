@@ -2,7 +2,8 @@
 
   <div id="body">
     <?php 
-			echo validation_errors();
+			
+      echo div('form_error', NULL, validation_errors());
 	
 			echo form_open('players/add_players/' . $game_id . '/' . $nb_players);
 			
