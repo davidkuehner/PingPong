@@ -12,8 +12,8 @@
     <div class="points_submit_content">
       
       <input type="button" class="points_submit add_point" onclick="add_point(<?php echo $player_id . ',' . $game_id ?>)" value="+" />
-      <!--<input type="button" class="points_submit rem_point" onclick="rem_point(<?php echo $player_id . ',' . $game_id ?>)" value="-" />-->
+      <input type="button" class="points_submit rem_point" onclick="rem_point(<?php echo $player_id . ',' . $game_id ?>)" value="-" />
 
-    </div><!-- .add_point -->
+    </div><!-- .points_submit_content -->
 
   </div><!-- .player_table -->

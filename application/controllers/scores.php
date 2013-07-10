@@ -32,6 +32,7 @@ class Scores extends CI_Controller {
     $this->layout->ajouter_css('ie');
     $this->layout->ajouter_css('mainstyle');
     $this->layout->add_google_jquery();
+    $this->layout->ajouter_js('scripts');
 
     $this->data = array(
         'title' => 'Scores',
@@ -167,7 +168,24 @@ class Scores extends CI_Controller {
    * @param $current_sets players sets associative array 'player_id'=>'sets' 
    */
   public function rem_point() {
+    // Get JSON arguments
+    $game_id = json_decode(stripslashes($_GET['game_id']));
+    $current_player_id = json_decode(stripslashes($_GET['player_id']));
+    $current_player_points = json_decode(stripslashes($_GET['player_points']));
   
+    // Points dec
+    --$current_player_points;
+    if($current_player_points >= 0) {
+      $result['current_points'] = $current_player_points;
+      $this->game_player->save_points($game_id, $current_player_id, $current_player_points);
+    }
+    else {
+      // already zero
+      $result['current_points'] = 0; 
+    }
+
+    // Return informations to ajax
+    $this->output->set_content_type('application/json')->set_output(json_encode($result));
   }
   
   /*
