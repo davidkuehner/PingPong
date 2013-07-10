@@ -106,20 +106,25 @@ class Player extends CI_Model
       }
   }
   
-  function suggestions($q)
+  /*
+   * Check if the given player already exists in the database
+   * If not creates a new one and return the id
+   * Else returns the corresponding id
+   *
+   * @param $seq Char sequence to match in database
+   * @returns An array with suggestions
+   */
+  function suggestions($seq)
   {
     $this->db->select('name');
-    $this->db->like('name', $q);
+    $this->db->like('name', $seq);
     $query = $this->db->get($this::TABLE_NAME);
-    //return $query->result();
-    //*
     if($query->num_rows > 0){
       foreach ($query->result_array() as $row){
         $row_set[] = htmlentities(stripslashes($row['name'])); //build an array
       }
     return $row_set;
-    //json_encode($row_set); //format the array into json data
-    }//*/
+    }
   }
 }
 ?>
