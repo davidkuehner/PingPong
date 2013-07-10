@@ -81,6 +81,8 @@ p.footer{
 .clear	{ clear: both; }
 .left 	{ float: left; }
 .right	{ float: right; }
+.hide { display: none; }
+.block { display: block; }
 
 /* 03 MENU
 -------------------------------------------------------------- */
@@ -235,7 +237,7 @@ ul{
     width: 98%;
 }
 
-.winner{
+#winner{
     background-color: #EEE;
     margin: 1%;
     padding: 2% 1%;

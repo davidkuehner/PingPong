@@ -11,6 +11,7 @@ class Games extends CI_Controller {
   const GAME_TITLE = 'game_title';
   const GAME_SET_NUMBER = 'game_set_number';
   const GAME_SET_POINTS = 'data_set_points';
+  const GAME_NB_PLAYERS = 'data_nb_players';
   
   // Private attributes
   private $data;
@@ -51,6 +52,7 @@ class Games extends CI_Controller {
     $this->form_validation->set_rules($this::GAME_TITLE, 'Titre', 'required');
     $this->form_validation->set_rules($this::GAME_SET_NUMBER, 'Number of sets', 'required');
     $this->form_validation->set_rules($this::GAME_SET_POINTS, 'Number of points', 'required');
+    $this->form_validation->set_rules($this::GAME_NB_PLAYERS, 'Number of players', 'required');
     
      if($this->form_validation->run() == FALSE) {
         $this->layout->view('games/create_form',$this->data);
@@ -62,12 +64,10 @@ class Games extends CI_Controller {
         'set_points' => $this->input->post($this::GAME_SET_POINTS),
         );
       $game_id = $this->game->save($data_game);
-      $nb_players = 2;
+      $nb_players = $this->input->post($this::GAME_NB_PLAYERS);
       redirect('players/index/' . $game_id . '/' . $nb_players);
-      
      }
   }
-  
 }
 
 /* End of file games.php */

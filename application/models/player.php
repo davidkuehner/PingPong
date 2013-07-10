@@ -105,5 +105,21 @@ class Player extends CI_Model
       return $this->save($data);
       }
   }
+  
+  function suggestions($q)
+  {
+    $this->db->select('name');
+    $this->db->like('name', $q);
+    $query = $this->db->get($this::TABLE_NAME);
+    //return $query->result();
+    //*
+    if($query->num_rows > 0){
+      foreach ($query->result_array() as $row){
+        $row_set[] = htmlentities(stripslashes($row['name'])); //build an array
+      }
+    return $row_set;
+    //json_encode($row_set); //format the array into json data
+    }//*/
+  }
 }
 ?>

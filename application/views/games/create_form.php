@@ -41,6 +41,19 @@
           );
         echo form_input($data_set_points);
 			echo '</div>';
+      
+      echo '<div class = "form_item">';
+        echo '<label for="data_nb_players">Nombre de joueurs : </label>';
+        $data_nb_players = array(
+          'name' =>'data_nb_players',
+          'id' =>'data_nb_players',
+          'type'=>'text',
+          'size' => '2',
+          'value' => '2',
+          );
+        echo form_input($data_nb_players);
+			echo '</div>';
+      
       $class = 'class="game_submit"';
       
       echo '<div class = "form_item">';

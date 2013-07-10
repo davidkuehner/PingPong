@@ -26,7 +26,11 @@ class Players extends CI_Controller {
     $this->layout->ajouter_css('typography');
     $this->layout->ajouter_css('forms');
     $this->layout->ajouter_css('ie');
+    $this->layout->ajouter_css('jquery.ui');
     $this->layout->ajouter_css('mainstyle');
+    $this->layout->ajouter_js('jquery');
+    $this->layout->ajouter_js('jquery.ui');
+    $this->layout->ajouter_js('scripts');
     
     $this->data = array(
         'title' => 'Add players',
@@ -78,6 +82,17 @@ class Players extends CI_Controller {
       }
       redirect('scores/index/' . $game_id);
      }
+  }
+  
+  //!\\ secure it
+  function suggestions(){
+    if (isset($_GET['term'])){
+      $q = $_GET['term'];
+      $suggestions = $this->player->suggestions($q);
+      echo '["';
+      echo implode('","',$suggestions);
+      echo '"]';
+    }
   }
 }
 

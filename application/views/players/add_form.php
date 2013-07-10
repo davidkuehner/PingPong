@@ -10,6 +10,7 @@
         $data_title = array(
           'name' =>'player_' . $i . '_name',
           'id' =>'player_' . $i . '_name',
+          'class' => 'player_name',
           'type'=>'text',
           'size' => '45',
           'value' => 'Player ' . $i,

@@ -1,19 +1,25 @@
   
-  <div class="player_table clearfix">
+  <div id="<?php echo 'player_'.$player_id?>" class="player_table clearfix">
+  
+  
     <?php echo heading($player_name,2); ?>
     <div class="points">
-      <p><?php echo $points_score; ?></p>
+      <?php echo p('player_'.$player_id.'_points',NULL,$points_score);?>
     </div><!-- .points -->
     <div class="sets">
-      <p><?php echo $sets_score; ?></p>
+      <?php echo p('player_'.$player_id.'_sets',NULL,$sets_score);?>
     </div><!-- .points -->
     <div class="add_point">
       <?php
-      echo form_open('scores/add_point/' . $player_id . '/' . $game_id);
+      /*echo form_open('scores/add_point/' . $player_id . '/' . $game_id);
       $class = 'class="points_submit"';
       echo form_submit('submit', '+',$class);
-			echo form_close();
+			echo form_close();*/
       ?>
+      
+      <input type="button" class="points_submit" onclick="add_point(<?php echo $player_id . ',' . $game_id ?>)" value="+" />
+
+      
     </div><!-- .add_point -->
     <?php //echo anchor(base_url().'/index.php/scores/clear_session/'.$game_id,'debug : clear session'); ?>
 

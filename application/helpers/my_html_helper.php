@@ -5,49 +5,44 @@
  *
  * Creates a div with given id and class.
  *
- * The format is <div id = "id1 idn" class = "class1 classn"> content </div>
+ * The format is <div id = "id" class = "class1 classn"> content </div>
  *
  * @access	public
- * @param	array	ids The ids of the div, in dec importance order
+ * @param	string id The id of the div
  * @param	array	calsses The classes of the div, in dec importance order
  * @param	string	content The inner content of the div
  * @return	string
  */
 if ( ! function_exists('div'))
 {
-	function div($ids = NULL, $classes = NULL, $content = NULL)
+	function div($id = NULL, $classes = NULL, $content = NULL)
 	{
   
     // Opening tag
 		$div = '<div ';
 
-    if($ids != NULL)
-    {
-      if($ids != is_array($ids))
-      {
-        $ids = array($ids);
-      }
-      
-      $div .= 'id = " ';
-      $div .= implode(" ", $ids);
-      $div .= ' " ';
+    if($id !== NULL)
+    {    
+      $div .= 'id = "';
+      $div .= $id;
+      $div .= '" ';
     }
-    if($classes != NULL)
+    if($classes !== NULL)
     {
       if($classes != is_array($classes))
       {
         $classes = array($classes);
       }
     
-      $div .= 'class = " ';
+      $div .= 'class = "';
       $div .= implode(" ", $classes);
-      $div .= ' " ';
+      $div .= '" ';
     }
     
     $div .= '>';
     
     // Content
-    if($content != NULL)
+    if($content !== NULL)
     {
       $div .= $content;
     }
@@ -66,49 +61,45 @@ if ( ! function_exists('div'))
  *
  * Creates a p with given id and class.
  *
- * The format is <p id = "id1 idn" class = "class1 classn"> content </p>
+ * The format is <p id = "id" class = "class1 classn"> content </p>
  *
  * @access	public
- * @param	array	ids The ids of the p, in dec importance order
+ * @param	string	id The id of the p
  * @param	array	calsses The classes of the p, in dec importance order
  * @param	string	content The inner content of the p
  * @return	string
  */
 if ( ! function_exists('p'))
 {
-	function p($ids = NULL, $classes = NULL, $content = NULL)
+	function p($id = NULL, $classes = NULL, $content = NULL)
 	{
   
     // Opening tag
 		$p = '<p ';
 
-    if($ids != NULL)
+    if($id !== NULL)
     {
-      if($ids != is_array($ids))
-      {
-        $ids = array($ids);
-      }
-      
-      $p .= 'id = " ';
-      $p .= implode(" ", $ids);
-      $p .= ' " ';
+
+      $p .= 'id = "';
+      $p .= $id;
+      $p .= '" ';
     }
-    if($classes != NULL)
+    if($classes !== NULL)
     {
       if($classes != is_array($classes))
       {
         $classes = array($classes);
       }
     
-      $p .= 'class = " ';
+      $p .= 'class = "';
       $p .= implode(" ", $classes);
-      $p .= ' " ';
+      $p .= '" ';
     }
     
     $p .= '>';
     
     // Content
-    if($content != NULL)
+    if($content !== NULL)
     {
       $p .= $content;
     }
