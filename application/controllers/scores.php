@@ -31,8 +31,8 @@ class Scores extends CI_Controller {
     $this->layout->ajouter_css('forms');
     $this->layout->ajouter_css('ie');
     $this->layout->ajouter_css('mainstyle');
-    $this->layout->add_google_jquery();
-    $this->layout->ajouter_js('scripts');
+    $this->layout->ajouter_js('jquery');
+    $this->layout->ajouter_js('scores');
 
     $this->data = array(
         'title' => 'Scores',
@@ -78,8 +78,8 @@ class Scores extends CI_Controller {
         $this->layout->views('scores/player_table',$data_player);
       }
     }
-    $this->layout->views('scores/footer');
-    $this->layout->view('scores/ajax_script'); //TODO put in the header theme ?
+    $this->layout->view('scores/footer');
+    //$this->layout->view('scores/ajax_script');
 	}  
   
   /**

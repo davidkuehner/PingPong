@@ -3,12 +3,12 @@
   <head>
     <title><?php echo $titre; ?></title>
           <meta http-equiv="Content-Type" content="text/html" charset="<?php echo $charset; ?>" />
-  <?php foreach($css as $url): ?>
-          <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $url; ?>" />
-  <?php endforeach; ?>
-  <?php foreach($js as $url): ?>
-          <script src="<?php echo $url; ?>" ></script>
-  <?php endforeach; ?>
+    <?php foreach($css as $url): ?>
+            <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $url; ?>" />
+    <?php endforeach; ?>
+    
+    <script>var base_url = "<?php echo site_url() ?>";    </script>
+
   </head>
   <body>
     <div id="container" >
@@ -26,6 +26,9 @@
       <?php echo $output; ?>
       <p class="footer"><?php echo $signature; ?></p>
     </div><!-- #container -->
-
+  
+  <?php foreach($js as $url): ?>
+            <script src="<?php echo $url; ?>" ></script>
+  <?php endforeach; ?>
   </body>
 </html>

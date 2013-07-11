@@ -30,7 +30,7 @@ class Players extends CI_Controller {
     $this->layout->ajouter_css('mainstyle');
     $this->layout->ajouter_js('jquery');
     $this->layout->ajouter_js('jquery.ui');
-    $this->layout->ajouter_js('scripts');
+    $this->layout->ajouter_js('players');
     
     $this->data = array(
         'title' => 'Add players',
