@@ -1,21 +1,65 @@
 $(document).ready(function(){
-
-    // Remove context menu
-  /*$(document).bind("contextmenu",function(e){
+  // Remove context menu
+  $(document).bind("contextmenu",function(e){
          return false;
   });
-
-  // do action on right and left clic
-  $(document).click(function(event) {
-  switch (event.which) {
+  
+  // add points to first and sec players with the mouse
+  function single_click(event) {
+    switch (event.which) {
+        case 1:
+            add_point(player_one_id,game_id);
+            break;
+        case 3:
+            add_point(player_two_id,game_id);
+            break;
+      }
+  }
+  
+  // rem points to first and sec players with the mouse
+  function double_click(event) {
+    switch (event.which) {
           case 1:
-              alert('Left mouse button clicked');
+              rem_point(player_one_id,game_id);
               break;
           case 3:
-              alert('Right mouse button clicked');
+              rem_point(player_two_id,game_id);
               break;
       }
-  });//*/
+  }
+
+  // Mouse detection logic
+  var alreadyclicked=false;
+  $(document).click(function(event){
+    var target = $(event.target);
+    
+    // if it's on link or else, do nothing
+    if( target.is('a') || target.is('input') || target.is('button') ) {
+      return true;
+    }
+  
+    var el=$(this);
+    if (alreadyclicked)
+    {
+        alreadyclicked=false; // reset
+        clearTimeout(alreadyclickedTimeout); // prevent this from happening
+        // do what needs to happen on double click. 
+        double_click.call(el, event);
+    }
+    else
+    {
+        alreadyclicked=true;
+        alreadyclickedTimeout=setTimeout(function(){
+            alreadyclicked=false; // reset when it happens
+            // do what needs to happen on single click. 
+            single_click.call(el, event);
+        },300); // <-- dblclick tolerance here
+    }
+    return false;
+  });
+  
+  
+  
 }); 
 
 // Add point for scores page
@@ -42,14 +86,32 @@ function add_point(p_id,g_id) {
           player_sets : p_sets,
           },
     success:function(result){
+      // Update points and sets
       document.getElementById(p_points_id).innerHTML = result.current_points;
       document.getElementById(p_sets_id).innerHTML = result.current_sets;
       
-      if(result.reset_points == true) {
+      // Reset points if needed
+      if(result.reset_points) {
         $(".points p").text('0');
+        $('.points').removeClass('match_point');
       }
       
-      if(result.has_winner == true) {
+      // Change style if it's match point
+      pre = '#';
+      id = pre.concat(p_points_id);
+      if(result.is_match_point) {
+        $('.points').removeClass('match_point');
+        $(id).parent().addClass('match_point');
+      }
+      else {
+        if(result.winner_couple) {
+          $('.points').removeClass('match_point');
+        }
+        $(id).parent().removeClass('match_point');
+      }
+            
+      // display the winner
+      if(result.has_winner) {
         $(".player_table").addClass('hide');
         $("#winner").removeClass('hide');
         
@@ -59,7 +121,6 @@ function add_point(p_id,g_id) {
         
         document.getElementById('winner').innerHTML = content;
       }
-      
     }
   });
 }
@@ -85,6 +146,19 @@ function rem_point(p_id,g_id) {
           },
     success:function(result){
       document.getElementById(p_points_id).innerHTML = result.current_points;
+      // Change style if it's match point
+      pre = '#';
+      id = pre.concat(p_points_id);
+      if(result.is_match_point) {
+        $('.points').removeClass('match_point');
+        $(id).parent().addClass('match_point');
+      }
+      else {
+        if(result.winner_couple) {
+          $('.points').removeClass('match_point');
+        }
+        $(id).parent().removeClass('match_point');
+      }
     }
   });
 }

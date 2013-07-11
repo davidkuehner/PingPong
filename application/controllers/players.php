@@ -91,7 +91,7 @@ class Players extends CI_Controller {
   function suggestions(){
     if (isset($_GET['term'])){
       $q = $_GET['term'];
-      $suggestions = $this->player->suggestions($q);   //!\\ secure it
+      $suggestions = $this->player->suggestions($q);
       echo '["';
       echo implode('","',$suggestions);
       echo '"]';

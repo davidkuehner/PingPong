@@ -3,6 +3,13 @@
   <div id="body" class="clearfix">
   
   <?php 
+  
+  echo '<script>';
+    echo "var player_one_id=$player_one_id;";
+    echo "var player_two_id=$player_two_id;";
+    echo "var game_id=$game_id;";
+  echo '</script>';
+  
   if($winner_name === NULL) {
     $css_class = 'hide';
   }

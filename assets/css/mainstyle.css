@@ -261,10 +261,14 @@ ul{
 }
 
 #winner{
-    background-color: #EEE;
-    margin: 1%;
-    padding: 2% 1%;
-    width: 96%;
+  background-color: #EEE;
+  margin: 1%;
+  padding: 2% 1%;
+  width: 96%;
+}
+
+.match_point{
+  background-color: #FF9933;
 }
 
 /* 07 GAMELIST
