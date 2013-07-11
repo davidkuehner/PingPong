@@ -275,10 +275,13 @@ class Scores extends CI_Controller {
   }
   
   /*
-   * Returns the opponent points list
+   * Returns the match status
    *
    * @param $game_id Current game id
-   * @param $opponent_players_id Opponent id list
+   * @param $current_player_id Current player id
+   * @param $current_player_points Current player points
+   * @param $points_max Max of points per set
+   * @return $array An array with two boolean values : is_match_point and winner_couple
    */
   private function get_match_point_status($game_id, $current_player_id, $current_player_points, $points_max) {
     // Get the opponent points

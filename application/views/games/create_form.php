@@ -14,7 +14,7 @@
           'id' => 'game_title',
           'type'=>'text',
           'size' => '45',
-          'value' => 'Title',
+          'value' => ' Friendly matche',
           );
         echo form_input($data_title);
 			echo '</div>';
